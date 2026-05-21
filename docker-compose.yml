@@ -1,3 +1,4 @@
+#updated docker compose file
 services:
   db:
     image: mysql:8.4

@@ -1,0 +1,14 @@
+name: Frontend-dockerfile-scanner
+on:
+    workflow_dispatch:
+jobs:
+    Frontend-dockerfile-scanner:
+        runs-on: ubuntu-latest
+        steps: 
+            - name: code-checkout
+              uses: actions/checkout@v4
+
+            -  name: Run Handolint
+               uses: hadolint/hadolint-action@v3.1.0
+               with:
+                  dockerfile: ./frontend/Dockerfile

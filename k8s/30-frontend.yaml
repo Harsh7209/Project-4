@@ -1,4 +1,5 @@
 ---
+#Frontend service and deployment configuration for skillpulse application
 apiVersion: v1
 kind: Service
 metadata:

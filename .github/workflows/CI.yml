@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: write
-
+#Docker hub image repo
 env:
   DOCKERHUB_REPO_1: harsh9308/skillpulse-backend
   DOCKERHUB_REPO_2: harsh9308/skillpulse-frontend

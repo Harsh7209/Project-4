@@ -1,4 +1,5 @@
-name: Frontend-dockerfile-scanner
+
+# name: Frontend-dockerfile-scanner
 on:
     workflow_call:
 jobs:

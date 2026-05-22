@@ -1,16 +1,24 @@
-name: Backend image linter
-on:
-    workflow_dispatch:
-jobs: 
-    Backend_image_Linter:
-        runs-on: ubuntu-latest
-        steps: 
-            - name: Code checkout
-              uses:  actions/checkout@v4
+name: Build and Scan Docker Image
 
-            - name: Run Trivy Linter
-              uses: aquasecurity/trivy-action@master
-              with:
-                image-ref: 'docker.io/harsh9308/skillpulse-backend:latest'
-                format: 'table'
-                severity: 'CRITICAL,HIGH'
+on:
+  workflow_dispatch:
+   
+
+jobs:
+  build-and-scan_backend_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t harsh9308/skillpulse-backend:${{ github.sha }} -f ./backend/Dockerfile
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'harsh9308/skillpulse-backend:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1' 
+          severity: 'CRITICAL,HIGH'

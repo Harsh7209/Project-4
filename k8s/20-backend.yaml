@@ -33,7 +33,7 @@ spec:
 
       containers:
         - name: backend
-          image: harsh9308/skillpulse-backend:aea5f3a
+          image: harsh9308/skillpulse-backend:ef8c4a8
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

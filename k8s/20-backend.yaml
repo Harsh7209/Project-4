@@ -30,6 +30,18 @@ spec:
       labels:
         app: backend
     spec:
+      initContainers:                                         # ← ADDED
+        - name: wait-for-mysql
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              until nc -z mysql.skillpulse.svc.cluster.local 3306; do
+                echo "Waiting for MySQL..."
+                sleep 3
+              done
+              echo "MySQL is ready!"
       containers:
         - name: backend
           image: harsh9308/skillpulse-backend:54b8222
@@ -65,15 +77,17 @@ spec:
               memory: 64Mi
             limits:
               memory: 128Mi
-          livenessProbe:
+          livenessProbe:                  # ← FIXED timings
             httpGet:
               path: /health
               port: 8080
-            initialDelaySeconds: 15
+            initialDelaySeconds: 60
+            periodSeconds: 15
+            failureThreshold: 5
+          readinessProbe:                 # ← FIXED timings
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
             periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 5
+            failureThreshold: 5

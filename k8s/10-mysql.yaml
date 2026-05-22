@@ -119,7 +119,7 @@ spec:
           readinessProbe:
             exec:
               command: [mysqladmin, ping, -h, localhost]
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
             periodSeconds: 5
             timeoutSeconds: 3
       volumes:

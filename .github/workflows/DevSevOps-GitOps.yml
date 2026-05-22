@@ -26,7 +26,7 @@ jobs:
         needs: [Frontend-dockerfile-lint]
     
     Backend-image-linter:
-        uses: ./.github/workflows/Backend-trivy.yml
+        uses: ./.github/workflows/Backend-Trivy.yml
         secrets: inherit
         needs: [Backend-dockerfile-lint]
     

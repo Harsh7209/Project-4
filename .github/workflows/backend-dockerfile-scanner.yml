@@ -1,4 +1,4 @@
-name: Backend dockerfile scanner
+#name: Backend dockerfile scanner
 on:
     workflow_call:
 jobs: 

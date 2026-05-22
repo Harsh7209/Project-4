@@ -1,3 +1,4 @@
+# CI workflow  for  Skill pulse and update kubernetes manifest
 name: Ci Pipeline for Skill_pulse
 
 on:

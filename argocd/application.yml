@@ -1,3 +1,4 @@
+# argo cd configurationn file for skillpulse application
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

@@ -1,0 +1,39 @@
+name: Complete workflow for Project-4
+on:
+    workflow_dispatch:
+permissions:
+  contents: write
+jobs: 
+    Git-Laeks-check:
+        uses: ./.github/workflows/Git-Leaks.yml
+        secrets: inherit
+
+    Depedency-check:
+        uses: ./.github/workflows/Depedency-check.yml
+        secrets:  inherit
+    
+    Frontend-dockerfile-lint:
+        uses: ./.github/workflows/frontend-dockerfile-scanner.yml
+        secrets: inherit
+
+    Backend-dockerfile-lint:
+        uses: ./.github/workflows/backend-dockerfile-scannner.yml
+        secrets: inherit
+    
+    Frontend-image-linter: 
+        uses: ./.github/workflows/Frontend trivy.yml
+        secrets: inherit
+        needs: [Frontend-dockerfile-lint]
+    
+    Backend-image-linter:
+        uses: ./.github/workflows/Backend-trivy.yml
+        secrets: inherit
+        needs: [Backend-dockerfile-lint]
+    
+    CI-for-project:
+        uses: ./.github/workflows/CI.yml
+        secrets: inherit
+        needs: [ Git-Laeks-check,Depedency-check,Frontend-dockerfile-lint,  Backend-dockerfile-lint,Frontend-image-linter,Backend-image-linter]
+    
+
+    

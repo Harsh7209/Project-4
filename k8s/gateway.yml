@@ -28,7 +28,7 @@ spec:
     - name: https
       protocol: HTTPS
       port: 443
-      hostname: 44.241.201.92.nip.io
+      hostname: 54.189.223.82.nip.io
       tls:
         mode: Terminate
         certificateRefs:
@@ -53,7 +53,7 @@ spec:
       name: skillpulse-gateway
       sectionName: http
   hostnames:
-    - 44.241.201.92.nip.io
+    - 54.189.223.82.nip.io
   rules:
     - filters:
         - type: RequestRedirect
@@ -75,7 +75,7 @@ spec:
       name: skillpulse-gateway
       sectionName: https
   hostnames:
-    - 44.241.201.92.nip.io
+    - 54.189.223.82.nip.io
   rules:
     - matches:
         - path:

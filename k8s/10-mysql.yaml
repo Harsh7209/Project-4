@@ -127,6 +127,8 @@ spec:
           configMap:
             name: mysql-init
   volumeClaimTemplates:
+    - apiVersion: v1
+       kind: PersistentVolumeClaim
     - metadata:
         name: data
       spec:

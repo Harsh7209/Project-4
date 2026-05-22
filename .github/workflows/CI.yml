@@ -21,9 +21,9 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.26'
-          cache: true  
- 
+          go-version: "1.26"
+          cache: true
+
       - name: Install dependencies and test
         working-directory: ./backend
         run: |
@@ -55,71 +55,65 @@ jobs:
           cache-to: type=gha,mode=max
 
   build_and_push_frontend_image:
-        runs-on: ubuntu-latest
-        steps: 
-          - name: Checkout code
-            uses: actions/checkout@v4
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-          - name: Set up Node.js
-            uses: actions/setup-node@v4
-            with:
-             node-version: '20'
+      - name: Set image tag
+        id: tag
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
-          - name: Set image tag
-            id: tag
-            run: echo "sha_short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-          - name: Login to DockerHub
-            uses: docker/login-action@v3
-            with:
-             username: ${{ secrets.DOCKERHUB_USERNAME }}
-             password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-
-          - name: Set up Docker Buildx
-            uses: docker/setup-buildx-action@v3
-
-      
-
-
-          - name: Build and Push Docker image  for frontend
-            uses: docker/build-push-action@v6
-            with:
-                context: ./frontend
-                file: frontend/Dockerfile
-                push: true
-                tags: |
-                    ${{ env.DOCKERHUB_REPO_2 }}:latest
-                    ${{ env.DOCKERHUB_REPO_2 }}:${{ steps.tag.outputs.sha_short }}
-                cache-from: type=gha
-                cache-to: type=gha,mode=max
+      - name: Build and Push Docker image  for frontend
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          file: frontend/Dockerfile
+          push: true
+          tags: |
+            ${{ env.DOCKERHUB_REPO_2 }}:latest
+            ${{ env.DOCKERHUB_REPO_2 }}:${{ steps.tag.outputs.sha_short }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   Update_manifest:
+    needs: [build-and-push-backend-image, build_and_push_frontend_image]
     runs-on: ubuntu-latest
-    steps: 
-          - name: Checkout code
-            uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-          - name: Set image tag
-            id: tag
-            run: echo "sha_short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Set image tag
+        id: tag
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
+      - name: Update Kubernetes backend deployment
+        run: |
+          sed -i "s|image: ${{ env.DOCKERHUB_REPO_1 }}:.*|image: ${{ env.DOCKERHUB_REPO_1 }}:${{ steps.tag.outputs.sha_short }}|" k8s/20-backend.yaml
 
-          - name: Update Kubernetes backend deployment
-            run: |
-             sed -i "s|image: ${{ env.DOCKERHUB_REPO_1 }}:.*|image: ${{ env.DOCKERHUB_REPO_1 }}:${{ steps.tag.outputs.sha_short }}|" 20-k8s/backend.yaml
-        
-          - name: Update Kubernetes frontend deployment
-            run: |
-             sed -i "s|image: ${{ env.DOCKERHUB_REPO_2 }}:.*|image: ${{ env.DOCKERHUB_REPO_2 }}:${{ steps.tag.outputs.sha_short }}|" 30k8s/frontend.yaml
+      - name: Update Kubernetes frontend deployment
+        run: |
+          sed -i "s|image: ${{ env.DOCKERHUB_REPO_2 }}:.*|image: ${{ env.DOCKERHUB_REPO_2 }}:${{ steps.tag.outputs.sha_short }}|" k8s/30-frontend.yaml
 
-
-          - name: Commit updated manifest
-            run: |
-                git config user.name "github-actions[bot]"
-                git config user.email "github-actions[bot]@users.noreply.github.com"
-                git add k8s/backend.yaml
-                git add k8s/frontend.yaml
-                git diff --staged --quiet || git commit -m "ci: update skillpulse image to ${{ steps.tag.outputs.sha_short }} [skip ci]"
-                git push
+      - name: Commit updated manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add k8s/20-backend.yaml
+          git add k8s/30-frontend.yaml
+          git diff --staged --quiet || git commit -m "ci: update skillpulse image to ${{ steps.tag.outputs.sha_short }} [skip ci]"
+          git push

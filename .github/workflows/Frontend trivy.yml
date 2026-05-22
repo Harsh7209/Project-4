@@ -1,3 +1,4 @@
+# frontend image linter
 name: Build and Scan Frontend  Image
 
 on:

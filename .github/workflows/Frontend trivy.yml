@@ -1,7 +1,7 @@
 name: Build and Scan Frontend  Image
 
 on:
-  workflow_dispatch:
+  workflow_call:
    
 
 jobs:

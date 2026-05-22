@@ -2,7 +2,7 @@
 name: Ci Pipeline for Skill_pulse
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: write

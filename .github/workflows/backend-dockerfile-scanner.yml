@@ -1,6 +1,6 @@
 name: Backend dockerfile scanner
 on:
-    workflow_dispatch:
+    workflow_call:
 jobs: 
     Backend-Dockerfile-Scanner:
         runs-on: ubuntu-latest

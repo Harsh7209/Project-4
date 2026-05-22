@@ -1,7 +1,7 @@
 name: Dependency check
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   Dependency_check:

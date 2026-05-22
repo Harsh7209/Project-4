@@ -1,6 +1,6 @@
 name: Frontend-dockerfile-scanner
 on:
-    workflow_dispatch:
+    workflow_call:
 jobs:
     Frontend-dockerfile-scanner:
         runs-on: ubuntu-latest

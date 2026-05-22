@@ -1,6 +1,6 @@
 name: GitLeak Scan 
 on:
-    workflow_dispatch:
+    workflow_call:
 jobs:
     Leak-check:
         runs-on: ubuntu-latest

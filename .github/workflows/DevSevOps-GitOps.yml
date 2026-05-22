@@ -1,6 +1,6 @@
 name: Complete workflow for Project-4
 on:
-    workflow_dispatch:
+    push:
 permissions:
   contents: write
 jobs: 

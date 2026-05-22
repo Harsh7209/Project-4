@@ -44,7 +44,7 @@ spec:
               echo "MySQL is ready!"
       containers:
         - name: backend
-          image: harsh9308/skillpulse-backend:54b8222
+          image: harsh9308/skillpulse-backend:f124cef
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

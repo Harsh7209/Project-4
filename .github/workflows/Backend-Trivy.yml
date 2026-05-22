@@ -1,0 +1,16 @@
+name: Backend image linter
+on:
+    workflow_dispatch:
+jobs: 
+    Backend_image_Linter:
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Code checkout
+              uses:  actions/checkout@v4
+
+            - name: Run Trivy Linter
+              uses: aquasecurity/trivy-action@master
+              with:
+                image-ref: 'docker.io/harsh9308/skillpulse-backend:latest'
+                format: 'table'
+                severity: 'CRITICAL'

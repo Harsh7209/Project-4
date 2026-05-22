@@ -13,4 +13,4 @@ jobs:
               with:
                 image-ref: 'docker.io/harsh9308/skillpulse-backend:latest'
                 format: 'table'
-                severity: 'CRITICAL'
+                severity: 'CRITICAL,HIGH'

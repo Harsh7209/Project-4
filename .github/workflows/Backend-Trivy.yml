@@ -31,7 +31,7 @@ jobs:
           context: ./backend             
           file: ./backend/Dockerfile  
           load: true             
-          tags: :harsh9308/skillpulse-backend${{ github.sha }}
+          tags: harsh9308/skillpulse-backend:${{ github.sha }}
           
 
       - name: Run Trivy vulnerability scanner

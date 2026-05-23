@@ -1,0 +1,135 @@
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: envoy-gateway
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: skillpulse-gateway
+  namespace: skillpulse
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  gatewayClassName: envoy-gateway
+  listeners:
+  
+    - name: http
+      protocol: HTTP
+      port: 80
+      allowedRoutes:
+        namespaces:
+          from: All
+
+    
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: <NLB-IP>.nip.io       
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - group: ""
+            kind: Secret
+            name: skillpulse-tls         
+      allowedRoutes:
+        namespaces:
+          from: Same
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: skillpulse-redirect
+  namespace: skillpulse
+spec:
+  parentRefs:
+    - name: skillpulse-gateway
+      sectionName: http
+  rules:
+    - filters:
+        - type: RequestRedirect
+          requestRedirect:
+            scheme: https
+            statusCode: 301
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: skillpulse-routes
+  namespace: skillpulse
+spec:
+  hostnames:
+    - <NLB-IP>.nip.io                    
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: skillpulse-gateway
+      sectionName: https
+
+  rules:
+   
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - group: ""
+          kind: Service
+          name: backend
+          port: 8080
+          weight: 1
+
+ 
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - group: ""
+          kind: Service
+          name: frontend
+          port: 80
+          weight: 1
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: skillpulse-tls
+  namespace: skillpulse
+spec:
+  secretName: skillpulse-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - <NLB-IP>.nip.io                    
+
+---
+
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: skillpulse-backend-traffic
+  namespace: skillpulse
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: skillpulse-routes
+  loadBalancer:
+    type: RoundRobin                     

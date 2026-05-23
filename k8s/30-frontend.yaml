@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: harsh9308/skillpulse-frontend:d46b700
+          image: harsh9308/skillpulse-frontend:3d581bb
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

@@ -30,7 +30,7 @@ spec:
     - name: https
       protocol: HTTPS
       port: 443
-      hostname: <NLB-IP>.nip.io       
+      hostname: 44.241.201.92.nip.io       
       tls:
         mode: Terminate
         certificateRefs:
@@ -67,7 +67,7 @@ metadata:
   namespace: skillpulse
 spec:
   hostnames:
-    - <NLB-IP>.nip.io                    
+    - 44.241.201.92.nip.io                    
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
@@ -117,7 +117,7 @@ spec:
     name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
-    - <NLB-IP>.nip.io                    
+    - 44.241.201.92.nip.io                    
 
 ---
 

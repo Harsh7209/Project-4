@@ -25,7 +25,7 @@ spec:
     - name: https
       protocol: HTTPS
       port: 443
-      hostname:  52.88.173.187.nip.io
+      hostname:  52.88.173.187.sslip.io
 
 
 
@@ -43,11 +43,11 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: skill-route
+  name: skillpulse-route
   namespace: skillpulse
 spec:
   hostnames:
-    - 52.88.173.187.nip.io   
+    - 52.88.173.187.sslip.io   
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway

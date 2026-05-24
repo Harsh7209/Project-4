@@ -25,7 +25,8 @@ spec:
     - name: https
       protocol: HTTPS
       port: 443
-      hostname:  44.240.54.126.nip.io
+      hostname:  52.88.173.187.nip.io
+
 
 
 
@@ -46,7 +47,7 @@ metadata:
   namespace: skillpulse
 spec:
   hostnames:
-    - 44.240.54.126.nip.io   
+    - 52.88.173.187.nip.io   
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway

@@ -4,7 +4,7 @@
 
 <br/>
 
-[![CI/CD](https://img.shields.io/github/actions/workflow/status/harsh9308/skillpulse/ci.yaml?branch=main&style=for-the-badge&logo=githubactions&logoColor=white&label=CI%2FCD&color=22c55e)](https://github.com/harsh9308/skillpulse/actions)
+
 [![Docker](https://img.shields.io/badge/Docker-Hub-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/u/harsh9308)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-EKS-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://aws.amazon.com/eks/)
 [![Terraform](https://img.shields.io/badge/IaC-Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)](https://www.terraform.io/)

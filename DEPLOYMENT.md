@@ -1,4 +1,4 @@
-# Deployment Playbook — AI BankApp on EKS
+# Deployment Playbook — SkillPulse on EKS
 
 Step-by-step commands to deploy the full stack. Run these in order.
 

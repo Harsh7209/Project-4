@@ -4,6 +4,9 @@ Step-by-step commands to deploy the full stack. Run these in order.
 
 ## Prerequisites
 
+
+
+- Add Gateway Controller.yml and cert manager.yml for every new  project
 - AWS CLI configured (`aws configure`)
 - Terraform >= 1.5.7
 - kubectl

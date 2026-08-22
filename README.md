@@ -1,435 +1,510 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=SkillPulse&fontSize=72&fontColor=ffffff&fontAlignY=38&desc=Track%20Skills.%20Ship%20Fearlessly.%20Own%20the%20Cloud.&descSize=18&descAlignY=60&animation=fadeIn" width="100%"/>
+<!-- BANNER -->
+<img src="https://raw.githubusercontent.com/serverless/serverless/main/assets/images/serverless_framework_v1_dark.gif" alt="Serverless Framework" width="550"/>
+
+<br/>
+<br/>
+
+# ⚡ AWS Serverless HTTP API — Node.js
+
+### Production-grade · Scalable · Zero-Infrastructure · Lightning Fast
 
 <br/>
 
-
-[![Docker](https://img.shields.io/badge/Docker-Hub-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/u/harsh9308)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-EKS-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://aws.amazon.com/eks/)
-[![Terraform](https://img.shields.io/badge/IaC-Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)](https://www.terraform.io/)
-[![ArgoCD](https://img.shields.io/badge/GitOps-ArgoCD-EF7B4D?style=for-the-badge&logo=argo&logoColor=white)](https://argoproj.github.io/cd/)
-[![License](https://img.shields.io/badge/License-Open%20Source-F59E0B?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](#license)
-
-<br/>
-
-### 🧰 Built With
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=react,go,mysql,docker,kubernetes,terraform,githubactions,aws,prometheus,grafana,linux,bash&theme=dark&perline=6" />
-</p>
+[![Serverless](https://img.shields.io/badge/serverless-v3-FD5750?style=for-the-badge&logo=serverless&logoColor=white)](https://www.serverless.com/)
+[![Node.js](https://img.shields.io/badge/node.js-18.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![AWS Lambda](https://img.shields.io/badge/AWS-Lambda-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/lambda/)
+[![API Gateway](https://img.shields.io/badge/API-Gateway-FF4F8B?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/api-gateway/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-6366F1?style=for-the-badge)](CONTRIBUTING.md)
 
 <br/>
 
-### 🔐 Secured By
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Gitleaks-Secret%20Scanning-FF4B4B?style=flat-square&logo=git&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Hadolint-Dockerfile%20Lint-00B4D8?style=flat-square&logo=docker&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Trivy-CVE%20Scanning-1904DA?style=flat-square&logo=aquasecurity&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/TLS-Let's%20Encrypt-003A70?style=flat-square&logo=letsencrypt&logoColor=white"/>
-</p>
-
-### ☁️ Runs On
-
-<p align="center">
-  <img src="https://img.shields.io/badge/AWS-EKS-FF9900?style=flat-square&logo=amazonaws&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/ArgoCD-GitOps-EF7B4D?style=flat-square&logo=argo&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Envoy-Gateway-AC6DFF?style=flat-square&logo=envoy&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/cert--manager-Auto%20TLS-00ADB5?style=flat-square&logo=kubernetes&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Helm-Charts-0F1689?style=flat-square&logo=helm&logoColor=white"/>
-</p>
+> **A battle-hardened, minimal-footprint HTTP API built on AWS Lambda + API Gateway via the Serverless Framework.**
+> Deploy in seconds. Scale to millions. Pay for nothing when idle.
 
 <br/>
 
-> **SkillPulse** is a cloud-native skill tracking platform running on a production-grade DevSecOps pipeline — from a `git push` to a live, TLS-secured deployment on AWS EKS, fully automated via GitHub Actions, ArgoCD, and Terraform, with end-to-end observability.
+[🚀 Quick Start](#-quick-start) · [📖 Docs](#-api-reference) · [🛠 Local Dev](#-local-development) · [🤝 Contributing](#-contributing) · [⭐ Examples](#-advanced-examples)
 
-<br/>
+---
 
 </div>
 
+<br/>
+
+## 📌 Table of Contents
+
+- [✨ Why This Template?](#-why-this-template)
+- [🏗 Architecture](#-architecture)
+- [🧰 Prerequisites](#-prerequisites)
+- [🚀 Quick Start](#-quick-start)
+- [⚙️ Configuration](#️-configuration)
+- [📁 Project Structure](#-project-structure)
+- [📡 API Reference](#-api-reference)
+- [🛠 Local Development](#-local-development)
+- [🧪 Testing](#-testing)
+- [🌍 Environment Variables](#-environment-variables)
+- [🔐 Security](#-security)
+- [📈 Performance & Scaling](#-performance--scaling)
+- [⚡ Advanced Examples](#-advanced-examples)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+
 ---
 
-## 📸 What is SkillPulse?
+<br/>
 
-SkillPulse is more than a skill tracker — it's a **living DevOps portfolio project**. The application lets you log learning hours and visualize growth across technologies. The infrastructure around it demonstrates the full breadth of a modern DevSecOps engineer's toolkit:
+## ✨ Why This Template?
 
-- 🔒 **Shift-left security** — secrets, Dockerfile, and image scanning before anything ships
-- 🚢 **GitOps delivery** — every manifest change is the source of truth; ArgoCD does the rest
-- ☁️ **Cloud-native infrastructure** — fully provisioned via Terraform, zero click-ops
-- 📡 **Production observability** — Prometheus metrics + Grafana dashboards out of the box
+| Feature | Details |
+|---|---|
+| 🟢 **Zero cold-start overhead** | Lightweight Node.js handler with minimal dependencies |
+| 💸 **True pay-per-use** | No charges when idle — AWS Free Tier friendly |
+| 🔁 **Auto-scaling** | From 0 to thousands of concurrent requests automatically |
+| 🌐 **Global edge** | Deploy to any AWS region with a single flag |
+| 🔒 **Secure by default** | IAM-scoped permissions, no over-privileged roles |
+| ⚙️ **IaC-first** | Entire infra defined in `serverless.yml` — no click-ops |
+| 🛠 **Dev-friendly** | Local emulation with `serverless-offline`, no cloud needed |
 
 ---
 
-## 🏗️ Architecture
+<br/>
+
+## 🏗 Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                          DEVELOPER MACHINE                              │
-│                          git push / PR                                  │
-└───────────────────────────────┬─────────────────────────────────────────┘
-                                │
-                                ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                         GITHUB ACTIONS  (CI/CD)                         │
-│                                                                         │
-│   ┌──────────────┐  ┌──────────────┐  ┌────────────────────────────┐   │
-│   │   Gitleaks   │  │   Hadolint   │  │          Trivy             │   │
-│   │ Secret scan  │  │  Dockerfile  │  │  Image CVE scan            │   │
-│   │  (pre-build) │  │    lint      │  │  (blocks HIGH/CRITICAL)    │   │
-│   └──────┬───────┘  └──────┬───────┘  └────────────┬───────────────┘   │
-│          └─────────────────┴───────────────────────┘                   │
-│                                  │                                      │
-│                   ┌──────────────▼──────────────┐                      │
-│                   │  Docker Build & Push         │                      │
-│                   │  Update K8s image tag        │                      │
-│                   └──────────────┬──────────────┘                      │
-└──────────────────────────────────┼──────────────────────────────────────┘
-                                   │
-                                   ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                         ARGOCD  (GitOps)                                │
-│              Watches repo → detects manifest change → syncs             │
-└───────────────────────────────┬─────────────────────────────────────────┘
-                                │
-                                ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                        AWS EKS CLUSTER                                  │
-│                                                                         │
-│  ┌─────────────────────────────────────────────────────────────────┐   │
-│  │  Namespace: skillpulse                                          │   │
-│  │                                                                 │   │
-│  │  ┌───────────────┐  ┌──────────────────┐  ┌─────────────────┐  │   │
-│  │  │   Frontend    │  │     Backend      │  │   MySQL 8.4     │  │   │
-│  │  │ React · :80   │  │  Go+Gin · :8080  │  │ StatefulSet     │  │   │
-│  │  │   NodePort    │  │   ClusterIP      │  │ PVC gp2 · 1Gi   │  │   │
-│  │  └───────┬───────┘  └────────┬─────────┘  └─────────────────┘  │   │
-│  │          └──────────┬────────┘                                  │   │
-│  └───────────────────┬─┴──────────────────────────────────────────┘   │
-│                      │                                                  │
-│  ┌───────────────────▼──────────────────────────────────────────────┐  │
-│  │  Envoy Gateway  (Kubernetes Gateway API)                         │  │
-│  │  AWS NLB → TLS (cert-manager + Let's Encrypt)                   │  │
-│  │  /      → frontend    /api   → backend                          │  │
-│  └──────────────────────────────────────────────────────────────────┘  │
-│                                                                         │
-│  ┌───────────────────────────────────────────────────────────────────┐  │
-│  │  Namespace: monitoring                                            │  │
-│  │  Prometheus (scraping)  +  Grafana (dashboards)                  │  │
-│  └───────────────────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────────────┘
+                         ┌─────────────────────────────────────────────┐
+                         │                  AWS Cloud                   │
+                         │                                             │
+  Client (curl / app)    │    ┌──────────────┐     ┌──────────────┐   │
+       │                 │    │              │     │              │   │
+       │  HTTP Request   │    │  API Gateway │     │   Lambda     │   │
+       │─────────────────┼───▶│  (HTTP API)  │────▶│  Function    │   │
+       │                 │    │              │     │  (Node.js)   │   │
+       │◀────────────────┼────│  Stage: dev  │◀────│              │   │
+       │  JSON Response  │    │              │     │              │   │
+                         │    └──────────────┘     └──────────────┘   │
+                         │                               │             │
+                         │                    ┌──────────▼──────────┐ │
+                         │                    │   CloudWatch Logs   │ │
+                         │                    └─────────────────────┘ │
+                         └─────────────────────────────────────────────┘
 ```
+
+**Request Flow:**
+1. Client sends HTTP `GET` request to API Gateway endpoint
+2. API Gateway routes it to the mapped Lambda function
+3. Lambda executes the Node.js handler and returns a response
+4. API Gateway forwards the JSON response back to the client
+5. All invocation logs are streamed to **CloudWatch**
 
 ---
 
-## 🛠️ Tech Stack
+<br/>
 
-| Layer | Technology | Role |
+## 🧰 Prerequisites
+
+Before you begin, ensure you have the following installed and configured:
+
+| Tool | Version | Install |
 |---|---|---|
-| **Frontend** | React | Skill tracking UI |
-| **Backend** | Go + Gin | REST API |
-| **Database** | MySQL 8.4 (StatefulSet) | Persistent storage |
-| **Containerization** | Docker, Docker Compose | Local + prod parity |
-| **Infrastructure** | Terraform (AWS) | EKS, VPC, IAM — zero click-ops |
-| **Orchestration** | Kubernetes on EKS | Production workloads |
-| **GitOps** | ArgoCD | Continuous delivery |
-| **Ingress / Gateway** | Envoy Gateway (K8s Gateway API) | L7 routing, NLB |
-| **TLS** | cert-manager + Let's Encrypt | Automated HTTPS |
-| **CI/CD** | GitHub Actions | Build, test, secure, deploy |
-| **Secret Scanning** | Gitleaks | Prevent credential leaks |
-| **Image Security** | Trivy | Block CVEs before they ship |
-| **Dockerfile Linting** | Hadolint | Enforce best practices |
-| **Observability** | Prometheus + Grafana | Metrics & dashboards |
+| **Node.js** | `>= 18.x` | [nodejs.org](https://nodejs.org/) |
+| **npm** | `>= 9.x` | Bundled with Node.js |
+| **Serverless CLI** | `v3` | `npm i -g serverless` |
+| **AWS CLI** | `>= 2.x` | [aws.amazon.com/cli](https://aws.amazon.com/cli/) |
+| **AWS Account** | Active | [aws.amazon.com](https://aws.amazon.com/) |
+
+### Configure AWS Credentials
+
+```bash
+aws configure
+# AWS Access Key ID:     <your-access-key>
+# AWS Secret Access Key: <your-secret-key>
+# Default region:        us-east-1
+# Default output format: json
+```
+
+> 💡 **Tip:** Use AWS IAM roles with least-privilege access. Never commit credentials to version control.
 
 ---
 
-## 🔄 CI/CD Pipeline
+<br/>
 
-Every `git push` flows through a gated, security-first pipeline before anything reaches the cluster.
+## 🚀 Quick Start
 
+Get your API live in under 2 minutes:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-org/aws-node-http-api.git
+cd aws-node-http-api
+
+# 2. Install dependencies
+npm install
+
+# 3. Deploy to AWS (dev stage, us-east-1)
+serverless deploy
+
+# 4. Call your live API 🎉
+curl https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/
 ```
-git push
-   │
-   ├─► [1] Gitleaks         Secret & credential scan (blocks on leak)
-   │
-   ├─► [2] Hadolint         Dockerfile best-practice lint (non-root, layer opt)
-   │
-   ├─► [3] Docker Build     Multi-stage image build
-   │
-   ├─► [4] Trivy Scan       CVE scan — HIGH/CRITICAL blocks the pipeline
-   │
-   ├─► [5] Docker Push      Publish image to Docker Hub
-   │
-   ├─► [6] Update Manifest  Bump image tag in k8s/ directory
-   │
-   └─► [7] ArgoCD Sync      Detects manifest diff → deploys to EKS automatically
+
+**Expected Output:**
+
+```json
+{
+  "message": "Go Serverless v3.0! Your function executed successfully!",
+  "input": {
+    "version": "2.0",
+    "routeKey": "GET /",
+    "rawPath": "/",
+    "requestContext": { ... }
+  }
+}
 ```
 
-### GitHub Actions Job Matrix
+---
+
+<br/>
+
+## ⚙️ Configuration
+
+All infrastructure configuration lives in `serverless.yml`:
 
 ```yaml
-jobs:
-  security-scan:      # Gitleaks — scans entire commit history for secrets
-  lint:               # Hadolint — Dockerfile quality gate
-  build-and-push:     # Multi-stage Docker build + Trivy CVE scan + Docker Hub push
-  update-manifest:    # Patches image tag in k8s manifests; triggers ArgoCD sync
+service: aws-node-http-api-project
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1        # 🌍 Change your target region here
+  stage: ${opt:stage, 'dev'}
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: GET
 ```
 
-> **Policy**: The pipeline is non-negotiable. No HIGH or CRITICAL CVE, no hardcoded secret, and no Dockerfile violation makes it past the gate — regardless of urgency.
-
----
-
-## 🔐 DevSecOps
-
-Security is embedded into every stage of the pipeline, not bolted on at the end.
-
-| Stage | Tool | What It Catches |
-|---|---|---|
-| **Pre-build** | Gitleaks | Hardcoded API keys, passwords, tokens in source code & history |
-| **Pre-build** | Hadolint | Running as root, missing `HEALTHCHECK`, unpinned base images, layer bloat |
-| **Post-build** | Trivy | Known CVEs in OS packages and language dependencies (HIGH/CRITICAL gate) |
-
-**Fail fast, fix early.** A broken pipeline is better than a compromised cluster.
-
-<p align="center">
-  <img src="https://img.shields.io/badge/%F0%9F%9A%A8%20Pipeline%20Failed%3F-Fix%20it%2C%20don't%20skip%20it-FF4B4B?style=flat-square"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/%F0%9F%94%92%20Security-Shift%20Left-22c55e?style=flat-square"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/%F0%9F%9B%A1%EF%B8%8F%20Zero%20Trust-Always%20Scan-blue?style=flat-square"/>
-</p>
-
----
-
-## ☸️ Kubernetes Manifests
-
-```
-namespace: skillpulse
-│
-├── Secret             skillpulse-db          DB credentials (base64-encoded)
-├── ConfigMap          mysql-init             init.sql — seeds skills & learning_logs tables
-│
-├── StatefulSet        mysql                  MySQL 8.4, gp2 PVC 1Gi
-├── Service            mysql                  Headless ClusterIP (stable DNS for StatefulSet)
-│
-├── Deployment         backend                Go API · image: harsh9308/skillpulse-backend
-│   └── Service        backend                ClusterIP :8080, /health liveness + readiness
-│
-├── Deployment         frontend               React · image: harsh9308/skillpulse-frontend
-│   └── Service        frontend               NodePort :30080, / liveness + readiness
-│
-├── Gateway            skillpulse-gateway     Envoy Gateway · AWS NLB
-├── HTTPRoute          skill-route            / → frontend · /api → backend
-├── Certificate        skillpulse-tls         cert-manager · Let's Encrypt · auto-renew
-└── BackendTrafficPolicy  skillpulse-session  Consistent-hash load balancing
-```
-
-**Seeded data (via init.sql):** Docker, Kubernetes, Go, Azure DevOps, Terraform
-
----
-
-## 🌍 Infrastructure — Terraform
-
-All AWS infrastructure is code. Zero manual provisioning.
-
-```
-terraform/
-├── vpc.tf          VPC, public/private subnets, route tables, NAT gateway
-├── eks.tf          EKS cluster, managed node groups, add-ons
-├── iam.tf          IAM roles — EKS nodes, Load Balancer Controller, ArgoCD
-├── variables.tf    Input variables (region, cluster name, instance types)
-├── outputs.tf      Cluster endpoint, OIDC issuer, node group ARNs
-└── README.md       Post-apply steps: Envoy Gateway, cert-manager
-```
+### Deploy to Different Stages
 
 ```bash
-cd terraform/
-terraform init
-terraform plan -out=tfplan
-terraform apply tfplan
-aws eks update-kubeconfig --name <cluster-name> --region us-west-2
+# Deploy to production
+serverless deploy --stage prod
+
+# Deploy to a specific region
+serverless deploy --region eu-west-1
+
+# Deploy with a custom profile
+serverless deploy --aws-profile myprofile
 ```
 
 ---
 
-## 📊 Observability
-
-Prometheus scrapes metrics from all services. Grafana surfaces them into actionable dashboards.
-
-| Dashboard | Metrics |
-|---|---|
-| **Pod Health** | CPU, memory per container; restarts, OOMKill events |
-| **API Performance** | HTTP request rate, p50/p95/p99 latency, error rate |
-| **Database** | MySQL connection pool, query duration, slow queries |
-| **Infrastructure** | Node CPU/memory saturation, disk I/O, network throughput |
-
-```bash
-# Access Grafana locally
-kubectl port-forward svc/grafana 3000:3000 -n monitoring
-
-# Access Prometheus locally
-kubectl port-forward svc/prometheus-server 9090:9090 -n monitoring
-```
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-| Tool | Purpose |
-|---|---|
-| `aws` CLI | AWS access (configured with credentials) |
-| `kubectl` | Cluster management |
-| `terraform` | Infrastructure provisioning |
-| `helm` | Chart installation |
-| `docker` | Local builds |
-
----
-
-### Step 1 — Provision Infrastructure
-
-```bash
-cd terraform/
-terraform init && terraform apply
-aws eks update-kubeconfig --name <cluster-name> --region us-west-2
-```
-
----
-
-### Step 2 — Install Cluster Dependencies
-
-```bash
-# Gateway API CRDs
-kubectl apply --server-side \
-  -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.1/standard-install.yaml
-
-# Envoy Gateway
-helm install eg oci://docker.io/envoyproxy/gateway-helm \
-  --version v1.2.6 -n envoy-gateway-system --create-namespace --skip-crds --wait
-
-# cert-manager
-helm repo add jetstack https://charts.jetstack.io --force-update
-helm install cert-manager jetstack/cert-manager \
-  --namespace cert-manager --create-namespace \
-  --set config.enableGatewayAPI=true \
-  --set crds.enabled=true
-
-# ArgoCD
-kubectl create namespace argocd
-kubectl apply -n argocd \
-  -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-```
-
----
-
-### Step 3 — Deploy via ArgoCD (GitOps)
-
-```bash
-kubectl apply -f argocd/application.yaml
-# ArgoCD continuously syncs k8s/ manifests from the repo to EKS
-```
-
----
-
-### Step 4 — Local Development
-
-```bash
-# Full stack: React + Go API + MySQL
-docker compose up
-
-# App: http://localhost:3000
-# API: http://localhost:8080
-```
-
----
+<br/>
 
 ## 📁 Project Structure
 
 ```
-skillpulse/
-├── .github/
-│   └── workflows/
-│       └── ci.yaml              GitHub Actions pipeline
-│
-├── frontend/                    React app (skill tracker UI)
-├── backend/                     Go + Gin REST API
-│
-├── k8s/                         Kubernetes manifests
-│   ├── namespace.yaml
-│   ├── mysql.yaml               StatefulSet + Headless Service + Secret + ConfigMap
-│   ├── backend.yaml             Deployment + ClusterIP Service
-│   ├── frontend.yaml            Deployment + NodePort Service
-│   ├── gateway.yaml             Envoy Gateway + HTTPRoute + BackendTrafficPolicy
-│   └── certificate.yaml         cert-manager Certificate
-│
-├── terraform/                   AWS infrastructure (EKS, VPC, IAM)
-├── monitoring/                  Prometheus + Grafana configs
-├── argocd/                      ArgoCD Application manifest
-│
-├── Dockerfile                   Multi-stage Docker build
-├── docker-compose.yaml          Local dev stack
-└── README.md
+aws-node-http-api/
+├── 📄 handler.js          # Lambda function handler
+├── 📄 serverless.yml      # Infrastructure as Code (IaC) config
+├── 📄 package.json        # Node.js dependencies & scripts
+├── 📄 .gitignore          # Ignored files (node_modules, .serverless)
+└── 📄 README.md           # You are here
+```
+
+### `handler.js` — The Core
+
+```javascript
+'use strict';
+
+module.exports.hello = async (event) => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify(
+      {
+        message: 'Go Serverless v3.0! Your function executed successfully!',
+        input: event,
+      },
+      null,
+      2
+    ),
+  };
+};
 ```
 
 ---
 
-## 📌 Current Image Tags
+<br/>
 
-| Service | Image |
-|---|---|
-| Backend | `harsh9308/skillpulse-backend:d46b700` |
-| Frontend | `harsh9308/skillpulse-frontend:d46b700` |
+## 📡 API Reference
 
-> Tags are automatically bumped by the CI pipeline on every successful build.
+### `GET /`
+
+Returns a success message with the full Lambda event context.
+
+**Request**
+
+```http
+GET https://<api-id>.execute-api.<region>.amazonaws.com/
+```
+
+**Response `200 OK`**
+
+```json
+{
+  "message": "Go Serverless v3.0! Your function executed successfully!",
+  "input": {
+    "version": "2.0",
+    "routeKey": "GET /",
+    "rawPath": "/",
+    "rawQueryString": "",
+    "headers": { ... },
+    "requestContext": { ... },
+    "isBase64Encoded": false
+  }
+}
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `message` | `string` | Static success message |
+| `input` | `object` | Full API Gateway event payload |
 
 ---
-
-## 🙏 Credits
-
-SkillPulse UI is based on an open-source skill tracking project.
-
-All DevOps infrastructure, CI/CD pipeline, GitOps configuration, DevSecOps tooling, TLS automation, and observability stack designed and implemented by **[Harsh](https://github.com/harsh9308)**.
-
----
-
-## 📄 License
-
-This project inherits the license of the original open-source UI. All DevOps additions — pipelines, manifests, Terraform, monitoring configs — are freely available for learning and reference.
-
----
-
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=100&section=footer" width="100%"/>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F%20by%20Harsh-FF6B6B?style=for-the-badge"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Powered%20by-AWS%20EKS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Shipped%20via-ArgoCD-EF7B4D?style=for-the-badge&logo=argo&logoColor=white"/>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/No%20Click--Ops-%E2%9C%85%20Terraform%20Only-7B42BC?style=flat-square&logo=terraform&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/GitOps-%E2%9C%85%20Source%20of%20Truth-EF7B4D?style=flat-square&logo=argo&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Observability-%E2%9C%85%20Prometheus%20%2B%20Grafana-E6522C?style=flat-square&logo=prometheus&logoColor=white"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/TLS-%E2%9C%85%20Auto%20Renewed-003A70?style=flat-square&logo=letsencrypt&logoColor=white"/>
-</p>
 
 <br/>
 
-**Built with obsession by [Harsh](https://github.com/harsh9308) · Deployed on AWS EKS · Secured end-to-end · GitOps all the way**
+## 🛠 Local Development
+
+### Option 1 — Direct Lambda Invocation
+
+Run the function locally without any HTTP layer:
+
+```bash
+serverless invoke local --function hello
+```
+
+```json
+{
+  "statusCode": 200,
+  "body": "{\n  \"message\": \"Go Serverless v3.0! ...\"\n}"
+}
+```
+
+### Option 2 — Full API Gateway Emulation (Recommended)
+
+Install and run `serverless-offline` for a full local HTTP server:
+
+```bash
+# Install the plugin (one-time)
+serverless plugin install -n serverless-offline
+
+# Start the local server
+serverless offline
+```
+
+Your API is now available at `http://localhost:3000`:
+
+```bash
+curl http://localhost:3000/
+```
+
+> 🔁 The server **hot-reloads** on file changes — no restart needed during development.
+
+### Option 3 — Emulate with Docker (Advanced)
+
+```bash
+# Use AWS SAM for Docker-based local Lambda emulation
+npm install -g aws-sam-cli
+sam local start-api
+```
+
+---
+
+<br/>
+
+## 🧪 Testing
+
+```bash
+# Run unit tests
+npm test
+
+# Run with coverage report
+npm run test:coverage
+
+# Run integration tests against deployed API
+API_URL=https://xxx.execute-api.us-east-1.amazonaws.com npm run test:integration
+```
+
+**Recommended Testing Stack:**
+
+| Layer | Tool |
+|---|---|
+| Unit | [Jest](https://jestjs.io/) |
+| Integration | [Supertest](https://github.com/ladjs/supertest) |
+| E2E | [Artillery](https://www.artillery.io/) |
+| Load | [k6](https://k6.io/) |
+
+---
+
+<br/>
+
+## 🌍 Environment Variables
+
+Define environment variables in `serverless.yml`:
+
+```yaml
+provider:
+  environment:
+    NODE_ENV: ${opt:stage, 'dev'}
+    MY_SECRET: ${ssm:/my-app/my-secret}   # From AWS SSM Parameter Store
+    API_KEY: ${env:API_KEY}               # From local shell environment
+```
+
+> 🔐 **Never hardcode secrets.** Use [AWS SSM Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) or [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/).
+
+---
+
+<br/>
+
+## 🔐 Security
+
+> ⚠️ By default, the deployed API is **publicly accessible**. For production, implement one of the following:
+
+### Option A — Lambda Authorizer (JWT/OAuth)
+
+```yaml
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: GET
+          authorizer:
+            name: myAuthorizer
+```
+
+### Option B — API Key Authentication
+
+```yaml
+provider:
+  apiGateway:
+    apiKeys:
+      - myApiKey
+```
+
+### Option C — AWS Cognito User Pools
+
+```yaml
+httpApi:
+  authorizers:
+    cognitoAuthorizer:
+      identitySource: $request.header.Authorization
+      issuerUrl: https://cognito-idp.{region}.amazonaws.com/{userPoolId}
+      audience:
+        - !Ref UserPoolClient
+```
+
+📖 Full docs: [Serverless Auth Docs](https://www.serverless.com/framework/docs/providers/aws/events/http-api/#jwt-authorizers)
+
+---
+
+<br/>
+
+## 📈 Performance & Scaling
+
+| Metric | Value |
+|---|---|
+| **Cold Start** | ~200–400ms (Node.js 18.x) |
+| **Warm Invocation** | < 10ms |
+| **Concurrency** | 1,000 (default, adjustable) |
+| **Timeout** | 6s (default), max 15min |
+| **Max Payload** | 6MB (sync), 256KB (async) |
+
+### Tips to Minimize Cold Starts
+
+- ✅ Keep `node_modules` lean — use `bundling` with esbuild
+- ✅ Use Lambda **Provisioned Concurrency** for latency-critical paths
+- ✅ Enable **Lambda SnapStart** (Java only, but useful to know)
+- ✅ Deploy in **arm64** (Graviton2) for 20% better price/perf ratio
+
+```yaml
+provider:
+  architecture: arm64   # 🦾 Graviton2 — faster & cheaper
+  memorySize: 256       # 💾 Right-size your function
+  timeout: 10           # ⏱ Don't leave it at 6s default
+```
+
+---
+
+<br/>
+
+## ⚡ Advanced Examples
+
+| Example | Description | Link |
+|---|---|---|
+| 🗄 **DynamoDB CRUD** | Full REST API with persistence | [View](https://github.com/serverless/examples/tree/master/aws-node-rest-api-with-dynamodb) |
+| 🔑 **JWT Auth** | Protected routes with Cognito | [View](https://github.com/serverless/examples) |
+| 📦 **TypeScript** | Fully typed Lambda handlers | [View](https://github.com/serverless/examples/tree/master/aws-node-typescript-rest-api-with-dynamodb) |
+| 📬 **SQS Queue** | Async messaging with SQS | [View](https://github.com/serverless/examples) |
+| 📸 **S3 Trigger** | Process uploads automatically | [View](https://github.com/serverless/examples) |
+| 🌐 **GraphQL** | Apollo Server on Lambda | [View](https://github.com/serverless/examples) |
+
+---
+
+<br/>
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+```bash
+# Fork & clone
+git clone https://github.com/your-username/aws-node-http-api.git
+
+# Create your feature branch
+git checkout -b feature/amazing-feature
+
+# Commit your changes
+git commit -m 'feat: add amazing feature'
+
+# Push and open a Pull Request
+git push origin feature/amazing-feature
+```
+
+Please follow [Conventional Commits](https://www.conventionalcommits.org/) and ensure all tests pass before submitting a PR.
+
+---
+
+<br/>
+
+## 📄 License
+
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
+
+---
+
+<br/>
+
+<div align="center">
+
+**Built with ❤️ using the [Serverless Framework](https://www.serverless.com/)**
+
+⭐ Star this repo if it saved you time!
+
+<br/>
+
+[![Serverless](https://img.shields.io/badge/Powered%20by-Serverless-FD5750?style=flat-square&logo=serverless)](https://www.serverless.com/)
+[![AWS](https://img.shields.io/badge/Deployed%20on-AWS-FF9900?style=flat-square&logo=amazon-aws)](https://aws.amazon.com/)
+[![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?style=flat-square&logo=node.js)](https://nodejs.org/)
 
 </div>
+
